@@ -6,10 +6,20 @@ import java.util.Objects;
 public class Clients implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private int id;
+
     private String firstName;
+
     private String lastName;
 
     public Clients() {
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -35,13 +45,23 @@ public class Clients implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Clients clients = (Clients) o;
-        return Objects.equals(firstName, clients.firstName) &&
+        return id == clients.id &&
+                Objects.equals(firstName, clients.firstName) &&
                 Objects.equals(lastName, clients.lastName);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(firstName, lastName);
+        return Objects.hash(id, firstName, lastName);
+    }
+
+    @Override
+    public String toString() {
+        return "Clients{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }
