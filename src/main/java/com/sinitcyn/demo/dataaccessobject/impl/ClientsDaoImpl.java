@@ -12,9 +12,12 @@ public class ClientsDaoImpl implements ClientsDao {
     private Connection getConnection() {
         Connection con = null;
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/customers", "root", "root");
             System.out.println("Got our connection");
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return con;
@@ -156,13 +159,14 @@ public class ClientsDaoImpl implements ClientsDao {
     }
 
     //Just test CRUD operation
-    /*public static void main(String[] args) {
-        ClientsDao clientsDao = new ClientsDaoImpl();
+   /* public static void main(String[] args) {
+        ClientsDaoImpl clientsDao = new ClientsDaoImpl();
         Clients clients = new Clients();
         clients.setFirstName("Bob");
         clients.setLastName("Marley");
         clientsDao.createClient(clients);
-        System.out.println(clientsDao.getClientById(3));
+        Clients clients = clientsDao.getClientById(4);
+        System.out.println(clients);
         System.out.println(clientsDao.getAllClients());
         System.out.println(clientsDao.editClients(clients));
         clientsDao.deleteClients(6);
