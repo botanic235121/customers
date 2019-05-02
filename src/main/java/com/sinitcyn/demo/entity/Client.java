@@ -3,7 +3,7 @@ package com.sinitcyn.demo.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Clients implements Serializable {
+public class Client implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private int id;
@@ -12,7 +12,7 @@ public class Clients implements Serializable {
 
     private String lastName;
 
-    public Clients() {
+    public Client() {
     }
     public int getId() {
         return id;
@@ -44,7 +44,7 @@ public class Clients implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Clients clients = (Clients) o;
+        Client clients = (Client) o;
         return id == clients.id &&
                 Objects.equals(firstName, clients.firstName) &&
                 Objects.equals(lastName, clients.lastName);
@@ -58,7 +58,7 @@ public class Clients implements Serializable {
 
     @Override
     public String toString() {
-        return "Clients{" +
+        return "Client{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

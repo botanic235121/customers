@@ -1,4 +1,4 @@
 package com.sinitcyn.demo.dataaccessobject;
 
-public interface OrdersDao {
+public interface OrderDao {
 }
