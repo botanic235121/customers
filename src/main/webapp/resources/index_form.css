@@ -4,18 +4,19 @@ body {
 a{
     border-radius: 1rem;
     cursor: pointer;
-    padding: 0.5%;
+    padding: 1%;
     border: none;
     font-weight: 600;
     color: #fff;
-    background-color: grey;
+    background-color: rgb(7,121,173);
     text-align: center;
-}
-#index-a{
     display: block;
-    margin: 20% 40% 10% 40%;
-    padding: 1%;
+    margin: 0.5% 40% .5% 40%;
+    text-decoration: none;
 }
 a:hover {
-    color: hotpink;
+    background-color: rgba(7,121,173, .5);
+}
+p{
+    text-align: center;
 }

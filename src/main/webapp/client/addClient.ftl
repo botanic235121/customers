@@ -4,7 +4,7 @@
     <title>Add client</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/addition_updating_form.css">
+    <link rel="stylesheet" href="../resources/addition_updating_form.css">
 </head>
 <body>
 
@@ -12,9 +12,9 @@
     <form action="information?action=addAction" method="post">
         <h3>Add new client</h3>
 
-        <input id="fname" type="text" name="firstName" placeholder="First name*" required>
+        <input type="text" name="firstName" placeholder="First name*" required>
         <br>
-        <input id="lname" type="text" name="lastName" placeholder="Last name*" required>
+        <input type="text" name="lastName" placeholder="Last name*" required>
         <br>
 
         <button type="submit" class="btnSubmit">Add</button>

@@ -6,6 +6,10 @@ table {
     border-spacing: 0;
     font-family:  sans-serif helvetica serif;
 }
+h3 {
+    text-align: center;
+    color: #333;
+}
 
 td, th {
     border: 1px solid #CCC;
@@ -35,7 +39,7 @@ tr:nth-child(odd) td {
 a:link, a:visited {
     background-color: rgba(0, 98, 204,0.6);
     color: white;
-    padding: 3% 20%;
+    padding: 3px 10px;
     text-align: center;
     text-decoration: none;
     border-radius: 1em;

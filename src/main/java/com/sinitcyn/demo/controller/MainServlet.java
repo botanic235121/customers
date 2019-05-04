@@ -2,7 +2,9 @@ package com.sinitcyn.demo.controller;
 
 
 import com.sinitcyn.demo.dataaccessobject.impl.ClientsDaoImpl;
+import com.sinitcyn.demo.dataaccessobject.impl.OrdersDaoImpl;
 import com.sinitcyn.demo.entity.Client;
+import com.sinitcyn.demo.entity.Order;
 
 
 import javax.servlet.RequestDispatcher;
@@ -19,18 +21,16 @@ public class MainServlet extends HttpServlet {
 
     private ClientsDaoImpl clientsDaoImp = new ClientsDaoImpl();
 
-    private static final String ADD_CLIENT_VIEW = "addClient.ftl";
-    private static final String UPDATE_CLIENT_VIEW = "updateClient.ftl";
-    private static final String LIST_CLIENTS_VIEW = "listClients.ftl";
+    private static final String ADD_CLIENT_VIEW = "client/addClient.ftl";
+    private static final String UPDATE_CLIENT_VIEW = "client/updateClient.ftl";
+    private static final String LIST_CLIENTS_VIEW = "client/listClients.ftl";
 
-    private static final String CLIENT_ADDED_VIEW = "clientAdded.html";
-    private static final String CLIENT_DELETED_VIEW = "clientDeleted.html";
-    private static final String CLIENT_UPDATED_VIEW = "clientUpdated.html";
+    private static final String INFORMATION_UPDATED_HTML = "InformationUpdated.html";
 
-    private static final String ADD_ACTION = "addAction";
-    private static final String UPDATE_ACTION = "updateAction";
-    private static final String DELETE_ACTION = "deleteAction";
-    private static final String LIST_ACTION = "listClients";
+    private static final String ADD_CLIENT_ACTION = "addAction";
+    private static final String UPDATE_CLIENT_ACTION = "updateAction";
+    private static final String DELETE_CLIENT_ACTION = "deleteAction";
+    private static final String LIST_CLIENTS_ACTION = "listClients";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,24 +40,24 @@ public class MainServlet extends HttpServlet {
 
         String action = request.getParameter("action");
         switch (action) {
-            case ADD_ACTION:
+            case ADD_CLIENT_ACTION:
                 path = ADD_CLIENT_VIEW;
                 break;
-            case LIST_ACTION:
-                List<Client> clients = clientsDaoImp.getAllClients();
-                request.setAttribute("clients", clients);
-                path = LIST_CLIENTS_VIEW;
-                break;
-            case UPDATE_ACTION:
+            case UPDATE_CLIENT_ACTION:
                 int id_client_update = Integer.parseInt(request.getParameter("id_client"));
                 Client update_client = clientsDaoImp.getClientById(id_client_update);
                 request.setAttribute("client", update_client);
                 path = UPDATE_CLIENT_VIEW;
                 break;
-            case DELETE_ACTION:
+            case DELETE_CLIENT_ACTION:
                 int id_client_delete = Integer.parseInt(request.getParameter("id_client"));
                 clientsDaoImp.deleteClient(id_client_delete);
-                path = CLIENT_DELETED_VIEW;
+                path = INFORMATION_UPDATED_HTML;
+                break;
+            case LIST_CLIENTS_ACTION:
+                List<Client> clients = clientsDaoImp.getAllClients();
+                request.setAttribute("clients", clients);
+                path = LIST_CLIENTS_VIEW;
                 break;
         }
 
@@ -75,24 +75,21 @@ public class MainServlet extends HttpServlet {
         String action = req.getParameter("action");
 
         switch (action) {
-            case UPDATE_ACTION:
+            case UPDATE_CLIENT_ACTION:
                 Client update_client = new Client();
                 update_client.setId(Integer.parseInt(req.getParameter("id")));
                 update_client.setFirstName(req.getParameter("firstName"));
                 update_client.setLastName(req.getParameter("lastName"));
-
                 clientsDaoImp.updateClient(update_client);
-                path = CLIENT_UPDATED_VIEW;
+                path = INFORMATION_UPDATED_HTML;
                 break;
-            case ADD_ACTION:
+            case ADD_CLIENT_ACTION:
                 Client add_client = new Client();
                 add_client.setFirstName(req.getParameter("firstName"));
                 add_client.setLastName(req.getParameter("lastName"));
-
                 clientsDaoImp.addClient(add_client);
-                path = CLIENT_ADDED_VIEW;
+                path = INFORMATION_UPDATED_HTML;
                 break;
-
         }
         resp.sendRedirect(path);
 

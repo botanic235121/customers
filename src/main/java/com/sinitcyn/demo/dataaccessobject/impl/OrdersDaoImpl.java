@@ -1,31 +1,35 @@
 package com.sinitcyn.demo.dataaccessobject.impl;
 
-import com.sinitcyn.demo.dataaccessobject.ClientDao;
+import com.sinitcyn.demo.dataaccessobject.OrderDao;
 import com.sinitcyn.demo.dataaccessobject.connection.DBConnection;
 import com.sinitcyn.demo.entity.Client;
+import com.sinitcyn.demo.entity.Order;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientsDaoImpl implements ClientDao {
+public class OrdersDaoImpl implements OrderDao {
 
     @Override
-    public Client getClientById(int id) {
-        Client client = null;
+    public List<Order> getAllOrdersByClient(Client client) {
         Connection con = DBConnection.getConnection();
+        List<Order> orders = new ArrayList<>();
+        Order order;
         try {
-            PreparedStatement pr = con.prepareStatement("select id_client, first_name, last_name from clients "
-                    + "where id_client=?");
-            pr.setInt(1, id);
-            ResultSet resultSet = pr.executeQuery();
+            PreparedStatement ps = con.prepareStatement("select name , id_order from orders where id_client=?");
+            ps.setInt(1, client.getId());
+            ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                client = new Client();
-                client.setId(resultSet.getInt(1));
-                client.setFirstName(resultSet.getString(2));
-                client.setLastName(resultSet.getString(3));
+                order = new Order();
+                order.setName(resultSet.getString(1));
+                order.setId(resultSet.getInt(2));
+                order.setClient(client);
+                orders.add(order);
             }
-
         } catch (SQLException e) {
             try {
                 con.close();
@@ -38,47 +42,18 @@ public class ClientsDaoImpl implements ClientDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-        return client;
+        return orders;
     }
 
     @Override
-    public void addClient(Client client) {
+    public void addOrderByClient(Order order, Client client) {
         Connection con = DBConnection.getConnection();
 
         try {
-            PreparedStatement pr = con.prepareStatement("insert into " +
-                    "clients(first_name, last_name) values (?,?)");
-            pr.setString(1, client.getFirstName());
-            pr.setString(2, client.getLastName());
-            pr.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            try {
-                con.close();
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-        }
-        try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void updateClient(Client client) {
-        Connection con = DBConnection.getConnection();
-
-        try {
-            PreparedStatement pr = con.prepareStatement("update clients set "
-                    + "first_name = ?, last_name = ? where id_client=?");
-            pr.setString(1, client.getFirstName());
-            pr.setString(2, client.getLastName());
-            pr.setInt(3, client.getId());
-            pr.executeUpdate();
+            PreparedStatement ps = con.prepareStatement("insert into orders (name, id_client) values (?,?)");
+            ps.setString(1, order.getName());
+            ps.setInt(2, client.getId());
+            ps.executeUpdate();
         } catch (SQLException e) {
             try {
                 con.close();
@@ -94,13 +69,13 @@ public class ClientsDaoImpl implements ClientDao {
     }
 
     @Override
-    public void deleteClient(int id) {
+    public void deleteOrder(int id) {
         Connection con = DBConnection.getConnection();
+
         try {
-            PreparedStatement pr = con.prepareStatement("delete from clients "
-                    + "where id_client = ?");
-            pr.setInt(1, id);
-            pr.executeUpdate();
+            PreparedStatement ps = con.prepareStatement("delete from orders where id_order = ?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
         } catch (SQLException e) {
             try {
                 con.close();
@@ -117,22 +92,40 @@ public class ClientsDaoImpl implements ClientDao {
     }
 
     @Override
-    public List<Client> getAllClients() {
-        List<Client> clients = new ArrayList<>();
-        Client client = null;
+    public void updateOrder(Order order) {
         Connection con = DBConnection.getConnection();
 
         try {
-            PreparedStatement pr = con.prepareStatement("select * from clients");
-            ResultSet resultSet = pr.executeQuery();
-
-            while (resultSet.next()) {
-                client = new Client();
-                client.setId(resultSet.getInt(1));
-                client.setFirstName(resultSet.getString(2));
-                client.setLastName(resultSet.getString(3));
-                clients.add(client);
+            PreparedStatement ps = con.prepareStatement("update orders set name = ? where id_order = ?");
+            ps.setString(1, order.getName());
+            ps.setInt(2, order.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            try {
+                con.close();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
             }
+        }
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Order getOrderById(int id) {
+        Connection con = DBConnection.getConnection();
+        Order order = new Order();
+        try {
+            PreparedStatement ps = con.prepareStatement("select name from orders where id_order = ?");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                order.setName(rs.getString(1));
+            }
+            order.setId(id);
 
         } catch (SQLException e) {
             try {
@@ -146,6 +139,7 @@ public class ClientsDaoImpl implements ClientDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return clients;
+
+        return order;
     }
 }

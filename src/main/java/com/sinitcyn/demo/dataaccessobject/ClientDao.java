@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ClientDao {
 
+
     Client getClientById(int id);
 
     void addClient(Client client);

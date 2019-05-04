@@ -7,7 +7,6 @@ body {
     padding: 5%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
-
 input {
     display: block;
     width: 100%;
@@ -19,6 +18,10 @@ input {
     font-size: medium;
 }
 ::placeholder{
+    color: #757575;
+}
+/* for Internet Explorer*/
+:-ms-input-placeholder{
     color: #757575;
 }
 
@@ -52,6 +55,10 @@ a {
     color: #0062cc;
     text-align: center;
     font-size: small;
+}
+span{
+    text-decoration: underline;
+    font-style: italic;
 }
 
 

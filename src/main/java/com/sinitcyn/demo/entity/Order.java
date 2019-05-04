@@ -6,10 +6,21 @@ import java.util.Objects;
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private int id;
+
     private String name;
-    private Client id_client;
+
+    private Client client;
 
     public Order() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -20,26 +31,35 @@ public class Order implements Serializable {
         this.name = name;
     }
 
-    public Client getId_client() {
-        return id_client;
+    public Client getClient() {
+        return client;
     }
 
-    public void setId_client(Client id_client) {
-        this.id_client = id_client;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Order orders = (Order) o;
-        return Objects.equals(name, orders.name) &&
-                Objects.equals(id_client, orders.id_client);
+        Order order = (Order) o;
+        return id == order.id &&
+                Objects.equals(name, order.name) &&
+                Objects.equals(client, order.client);
     }
 
     @Override
     public int hashCode() {
+        return Objects.hash(id, name, client);
+    }
 
-        return Objects.hash(name, id_client);
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", client=" + client +
+                '}';
     }
 }
