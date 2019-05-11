@@ -1,0 +1,73 @@
+table {
+    width: 700px;
+    text-align: center;
+    margin: 5% auto auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family:  sans-serif helvetica serif;
+}
+h3 {
+    text-align: center;
+    color: #333;
+}
+span {
+    text-decoration: underline;
+}
+
+td, th {
+    border: 1px solid #CCC;
+    height: 30px;
+    transition: all 0.3s;
+}
+
+th {
+    background-color: rgba(44, 56, 69, 1);
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    color: black;
+    /*font-weight: bold;*/
+}
+
+tr:nth-child(even) td {
+    background: rgba(44, 56, 69, .05);;
+}
+
+tr:nth-child(odd) td {
+    background: white;
+}
+
+a:link, a:visited {
+    background-color: rgba(0, 98, 204,0.6);
+    color: white;
+    padding: 3px 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 1em;
+}
+
+#add_link {
+    padding: .5%;
+    text-align: center;
+    display: block;
+    margin: 0.5% 40%;
+    border-radius: 1em;
+    text-decoration: none;
+}
+#excel_link{
+    text-decoration: underline;
+    background-color: white;
+    cursor: pointer;
+    margin: 0.5% 40%;
+    font-weight: 600;
+    color: #0062cc;
+    text-align: center;
+    font-size: small;
+
+}
+
+a:hover, a:active {
+    background-color: rgba(0, 98, 204,1);
+}

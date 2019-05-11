@@ -10,7 +10,7 @@
 <body>
 
 <table>
-    <h3>Orders for ${client.firstName} ${client.lastName}</h3>
+    <h3>Orders for <span>${client.firstName} ${client.lastName} </span></h3>
     <thead>
     <tr>
         <th>Order Id</th>

@@ -33,5 +33,6 @@
     </tbody>
 </table>
 <a href="information?action=addAction" id="add_link">Add new client</a>
+<a href="excel" id="excel_link">Import list to Excel?</a>
 </body>
 </html>

@@ -1,0 +1,65 @@
+body {
+    font-family: 'open sans', helvetica, arial, sans, sans-serif;
+}
+
+.form-container {
+    margin: 5% 35% 20% 35%;
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+input {
+    display: block;
+    width: 100%;
+    margin: auto auto 2em;
+    border: none;
+    border-bottom: 1px solid #eaeaea;
+    padding: .5em 0 1.25em;
+    color: black;
+    font-size: medium;
+}
+::placeholder{
+    color: #757575;
+}
+/* for Internet Explorer*/
+:-ms-input-placeholder{
+    color: #757575;
+}
+
+label {
+    font-size: small;
+    color: #757575;
+}
+
+h3 {
+    text-align: center;
+    color: #333;
+}
+
+
+.btnSubmit {
+    width: 100%;
+    border-radius: 1rem;
+    padding: 2%;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+    margin: auto auto 2em;
+}
+
+a {
+    cursor: pointer;
+    padding: 1%;
+    font-weight: 600;
+    color: #0062cc;
+    text-align: center;
+    font-size: small;
+}
+span{
+    text-decoration: underline;
+    font-style: italic;
+}
+
+
+

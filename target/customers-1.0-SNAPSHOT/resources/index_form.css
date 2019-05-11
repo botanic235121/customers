@@ -1,0 +1,22 @@
+body {
+    font-family: 'open sans', helvetica, arial, sans, sans-serif;
+}
+a{
+    border-radius: 1rem;
+    cursor: pointer;
+    padding: 1%;
+    border: none;
+    font-weight: 600;
+    color: #fff;
+    background-color: rgb(7,121,173);
+    text-align: center;
+    display: block;
+    margin: 0.5% 40% .5% 40%;
+    text-decoration: none;
+}
+a:hover {
+    background-color: rgba(7,121,173, .5);
+}
+p{
+    text-align: center;
+}
